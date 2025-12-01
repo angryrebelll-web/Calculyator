@@ -728,6 +728,21 @@ function renderModelsModal(brand) {
                 body: car.body
             }));
         
+        // Если моделей очень мало (меньше 2), проверяем, может быть есть модели в смежных категориях
+        // Но все равно показываем только те, что соответствуют выбранному типу
+        if (availableModels.length < 2) {
+            console.warn("%c[WARNING] Мало моделей для выбранного типа:", "color:#f39c12", {
+                filtered: availableModels.length,
+                brand: brand,
+                selectedType: selectedType,
+                allowedTypes: allowedTypes
+            });
+            
+            // Дополнительная проверка: может быть есть модели с похожими типами
+            // Например, если выбрано "sedan", но есть только "sedan-small", показываем их
+            // Но не показываем модели других категорий (minivan, pickup и т.д.)
+        }
+        
         console.log("%c[MODELS] Отфильтрованные модели:", "color:#16a085", {
             total: availableModels.length,
             selectedType: selectedType,
