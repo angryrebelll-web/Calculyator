@@ -378,26 +378,33 @@ body {
         min-width: auto !important;
         max-width: 100% !important;
         flex-shrink: 1 !important;
-        padding: 16px 12px !important;
-        min-height: 120px !important;
+        padding: 20px 12px !important;
+        min-height: 100px !important;
         /* Убираем дергание */
-        will-change: auto;
-        transform: none;
+        will-change: auto !important;
+        transform: none !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
     }
     
+    /* Скрываем иконки на мобильных */
     #carTypeSelect .chip-icon {
-        width: 36px;
-        height: 36px;
-        margin-bottom: 8px;
+        display: none !important;
     }
     
-    #carTypeSelect .chip-icon img {
-        width: 36px;
-        height: 36px;
+    #carTypeSelect .chip-text {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        gap: 4px !important;
     }
     
     #carTypeSelect .chip-text strong {
-        font-size: 14px;
+        font-size: 15px;
+        font-weight: 700;
     }
     
     #carTypeSelect .chip-text span {
@@ -568,13 +575,18 @@ body {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        padding: 32px 24px;
-        min-height: 180px;
+        padding: 24px 20px;
+        min-height: 140px;
         justify-content: center;
         background: linear-gradient(135deg, var(--propellini-dark-secondary) 0%, rgba(22, 132, 145, 0.05) 100%);
         border: 2px solid rgba(255, 255, 255, 0.08);
         position: relative;
         overflow: hidden;
+    }
+    
+    /* Скрываем иконки в типах авто */
+    #carTypeSelect .chip-icon {
+        display: none !important;
     }
     
     #carTypeSelect .chip::before {
@@ -594,16 +606,16 @@ body {
     }
     
     #carTypeSelect .chip:hover {
-        transform: translateY(-4px);
+        transform: none;
         border-color: rgba(22, 132, 145, 0.4);
-        box-shadow: 0 8px 24px rgba(22, 132, 145, 0.2);
+        box-shadow: 0 4px 12px rgba(22, 132, 145, 0.2);
     }
     
     #carTypeSelect .chip.active {
         background: linear-gradient(135deg, var(--propellini-primary) 0%, rgba(22, 132, 145, 0.8) 100%);
         border-color: var(--propellini-primary);
-        box-shadow: 0 8px 32px rgba(22, 132, 145, 0.4);
-        transform: translateY(-2px);
+        box-shadow: 0 4px 16px rgba(22, 132, 145, 0.3);
+        transform: none;
     }
     
     #carTypeSelect .chip.active::before {
@@ -614,8 +626,10 @@ body {
 .chip:hover {
     background: rgba(22, 132, 145, 0.25);
     border-color: var(--propellini-primary);
-    transform: translateY(-2px);
+    transform: none;
     box-shadow: 0 2px 6px rgba(22, 132, 145, 0.15);
+    /* Убираем дергание */
+    will-change: auto;
 }
 
 .chip:hover::after {
@@ -632,21 +646,26 @@ body {
     background: var(--propellini-primary);
     border-color: var(--propellini-primary);
     box-shadow: 0 2px 8px rgba(22, 132, 145, 0.3);
-    transform: translateY(-1px);
+    transform: none;
+    /* Убираем дергание */
+    will-change: auto;
 }
 
 @media (min-width: 1024px) {
     .chip:hover:not(#carTypeSelect .chip) {
         background: rgba(22, 132, 145, 0.2);
         border-color: var(--propellini-primary);
-        transform: translateY(-2px);
+        transform: none;
         box-shadow: 0 2px 6px rgba(22, 132, 145, 0.15);
+        will-change: auto;
     }
     
     .chip.active:not(#carTypeSelect .chip) {
         background: var(--propellini-primary);
         border-color: var(--propellini-primary);
         box-shadow: 0 2px 8px rgba(22, 132, 145, 0.3);
+        transform: none;
+        will-change: auto;
     }
 }
 
@@ -2120,13 +2139,17 @@ body {
     transform: translate(-50%, -50%);
     width: 90%;
     max-width: 500px;
-    max-height: 90vh;
+    max-height: 85vh;
     background: var(--propellini-dark);
     border-radius: 16px;
-    padding: 32px;
+    padding: 28px;
     overflow-y: auto;
     border: 2px solid rgba(22, 132, 145, 0.3);
     animation: modalAppear 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Убираем дергание */
+    will-change: auto;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .booking-close {
@@ -2153,14 +2176,14 @@ body {
 }
 
 .booking-content h2 {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 800;
     color: var(--propellini-primary);
-    margin: 0 0 24px 0;
+    margin: 0 0 20px 0;
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 .form-group label {
@@ -2174,15 +2197,17 @@ body {
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 14px 16px;
+    padding: 12px 14px;
     border-radius: 12px;
     border: 2px solid rgba(255, 255, 255, 0.1);
     background: var(--propellini-dark-secondary);
     color: var(--propellini-text);
     font-size: 16px;
     outline: none;
-    transition: all 0.3s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
     font-family: inherit;
+    /* Убираем дергание */
+    will-change: auto;
 }
 
 .form-group input:focus,
@@ -2193,12 +2218,12 @@ body {
 
 .form-group textarea {
     resize: vertical;
-    min-height: 100px;
+    min-height: 80px;
 }
 
 .form-summary {
-    margin: 24px 0;
-    padding: 20px;
+    margin: 20px 0;
+    padding: 16px;
     background: var(--propellini-dark-secondary);
     border-radius: 12px;
     border: 1px solid rgba(22, 132, 145, 0.2);
@@ -2399,47 +2424,52 @@ body {
     }
 
     .booking-content {
-        padding: 20px;
+        padding: 18px;
         width: 95%;
         max-width: 95%;
-        max-height: 95vh;
+        max-height: 88vh;
         border-radius: 12px;
+        /* Убираем дергание */
+        will-change: auto !important;
+        transform: translate(-50%, -50%) !important;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
     }
     
     .booking-content h2 {
-        font-size: 20px;
-        margin-bottom: 20px;
-    }
-    
-    .form-group {
+        font-size: 18px;
         margin-bottom: 16px;
     }
     
+    .form-group {
+        margin-bottom: 14px;
+    }
+    
     .form-group label {
-        font-size: 13px;
+        font-size: 12px;
         margin-bottom: 6px;
     }
     
     .form-group input,
     .form-group textarea {
-        padding: 12px 14px;
+        padding: 10px 12px;
         font-size: 16px; /* Предотвращает зум на iOS */
         border-radius: 10px;
     }
     
     .form-summary {
-        margin: 20px 0;
-        padding: 16px;
+        margin: 16px 0;
+        padding: 12px;
     }
     
     .form-summary h3 {
-        font-size: 14px;
-        margin-bottom: 10px;
+        font-size: 13px;
+        margin-bottom: 8px;
     }
     
     #summaryData {
-        font-size: 12px;
-        line-height: 1.5;
+        font-size: 11px;
+        line-height: 1.4;
     }
     
     .btn-submit {
