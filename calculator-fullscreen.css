@@ -1088,8 +1088,9 @@ body {
     
     .package-item.active {
         transform: none !important;
-        box-shadow: 0 6px 24px rgba(22, 132, 145, 0.35) !important;
-        border: 2px solid var(--propellini-primary) !important;
+        /* Убираем подсветку вокруг пакета */
+        box-shadow: none !important;
+        border-color: transparent !important;
     }
     
     .package-header {
@@ -1236,8 +1237,9 @@ body {
     grid-template-rows: auto 1fr auto;
     /* Стабильность */
     will-change: auto;
-    /* Убираем свечение */
+    /* Убираем свечение и подсветку */
     box-shadow: none;
+    outline: none;
 }
 
 .package-item::before,
@@ -1277,17 +1279,19 @@ body {
             var(--c1, #1ba5b3) 32%, 
             var(--c2, #168491) 0 57%, 
             var(--c3, #0d5c60) 0);
-    mix-blend-mode: normal;
-    opacity: 1;
+    /* Возвращаем mix-blend-mode для красивого градиента */
+    mix-blend-mode: screen;
+    opacity: 0.9;
     /* Убеждаемся что градиент виден */
     z-index: 1;
 }
 
 .package-item:hover {
     transform: none;
-    /* Убираем свечение при наведении */
+    /* Убираем свечение и подсветку при наведении */
     box-shadow: none;
     border-color: transparent;
+    outline: none;
 }
 
 .package-item:not(:hover) {
@@ -1296,12 +1300,13 @@ body {
 
 .package-item.active {
     transform: none;
-    /* Эффект нажатия без свечения */
+    /* Эффект нажатия без подсветки */
     box-shadow: 
         inset 0 4px 12px rgba(22, 132, 145, 0.3),
         inset 0 -2px 8px rgba(0, 0, 0, 0.2);
-    /* Убираем внешнее свечение */
+    /* Убираем внешнее свечение и подсветку */
     border-color: transparent;
+    outline: none;
 }
 
 .package-item.active::after {
