@@ -358,107 +358,96 @@ body {
 }
 
 @media (max-width: 768px) {
-    /* Компактное расположение типов авто на мобильных */
+    /* Вертикальная сетка 2 колонки для типов авто на мобильных */
     #carTypeSelect.chips {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-        overflow-x: auto !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+        margin-top: 16px !important;
+        padding-bottom: 0 !important;
+        padding-right: 0 !important;
+        overflow-x: visible !important;
         overflow-y: visible !important;
-        gap: 12px;
-        margin-top: 12px;
-        padding-bottom: 10px;
-        padding-right: 20px;
-        -webkit-overflow-scrolling: touch;
-        scroll-snap-type: x mandatory;
-        scroll-behavior: smooth;
         /* Убираем дергание */
-        will-change: scroll-position;
-        transform: translateZ(0);
+        will-change: auto;
+        transform: none;
     }
     
     #carTypeSelect .chip {
-        min-width: 130px;
-        max-width: 150px;
-        flex-shrink: 0;
-        scroll-snap-align: start;
-        padding: 14px 10px;
-        min-height: 130px;
+        width: 100% !important;
+        min-width: auto !important;
+        max-width: 100% !important;
+        flex-shrink: 1 !important;
+        padding: 16px 12px !important;
+        min-height: 120px !important;
         /* Убираем дергание */
-        will-change: transform;
-        transform: translateZ(0);
+        will-change: auto;
+        transform: none;
     }
     
     #carTypeSelect .chip-icon {
-        width: 32px;
-        height: 32px;
-        margin-bottom: 6px;
+        width: 36px;
+        height: 36px;
+        margin-bottom: 8px;
     }
     
     #carTypeSelect .chip-icon img {
-        width: 32px;
-        height: 32px;
+        width: 36px;
+        height: 36px;
     }
     
     #carTypeSelect .chip-text strong {
-        font-size: 13px;
+        font-size: 14px;
     }
     
     #carTypeSelect .chip-text span {
-        font-size: 10px;
-        line-height: 1.2;
+        font-size: 11px;
+        line-height: 1.3;
     }
     
-    /* Улучшаем скролл для марок и моделей */
+    /* Вертикальная сетка для марок и моделей на мобильных */
     #brandList.chips,
     #modelList.chips {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        overflow-y: hidden;
-        gap: 10px;
-        margin-top: 12px;
-        padding-bottom: 10px;
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        margin-top: 12px !important;
+        padding-bottom: 0 !important;
+        overflow-x: visible !important;
+        overflow-y: visible !important;
+        max-height: none !important;
         -webkit-overflow-scrolling: touch;
         scroll-behavior: smooth;
-        scroll-snap-type: x proximity;
     }
     
     #brandList .chip,
     #modelList .chip {
-        min-width: 120px;
-        flex-shrink: 0;
-        scroll-snap-align: start;
+        width: 100% !important;
+        min-width: auto !important;
+        flex-shrink: 1 !important;
+        padding: 12px 14px !important;
+        text-align: center;
     }
     
-    /* Улучшаем скролл в модальном окне моделей */
+    /* Вертикальная сетка в модальном окне моделей */
     .model-body .chips {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        overflow-y: hidden;
-        gap: 10px;
-        padding-bottom: 10px;
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        padding-bottom: 0 !important;
+        overflow-x: visible !important;
+        overflow-y: visible !important;
+        max-height: none !important;
         -webkit-overflow-scrolling: touch;
         scroll-behavior: smooth;
-        scroll-snap-type: x proximity;
-        max-height: none;
     }
     
     .model-body .chip {
-        min-width: 120px;
-        flex-shrink: 0;
-        scroll-snap-align: start;
-    }
-    
-    /* Для марок и моделей - более компактная сетка */
-    #brandList.chips,
-    #modelList.chips {
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-        gap: 10px;
-        max-height: 400px;
+        width: 100% !important;
+        min-width: auto !important;
+        flex-shrink: 1 !important;
+        padding: 12px 14px !important;
+        text-align: center;
     }
 }
 
