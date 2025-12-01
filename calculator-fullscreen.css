@@ -1222,15 +1222,13 @@ body {
     --grad-a: 135deg;
     
     position: relative;
-    overflow: visible;
+    overflow: hidden;
     margin: calc(-1 * var(--plan-b));
     border: solid var(--plan-b) transparent;
     border-radius: calc(var(--plan-b) + var(--base-r));
     background: 
         radial-gradient(closest-side, hsla(0, 0%, 0%, 0.15), transparent) 50% 100% / var(--base-w) var(--plan-b) border-box no-repeat,
         linear-gradient(var(--propellini-dark-secondary) 0 0) padding-box;
-    /* Убираем clip-path чтобы цвет не обрезался */
-    clip-path: none;
     transition: box-shadow 0.2s ease;
     cursor: pointer;
     min-height: 240px;
@@ -1247,11 +1245,12 @@ body {
     top: calc(-1 * var(--plan-b));
     left: calc(-1 * var(--plan-b));
     width: calc(100% + 2 * var(--plan-b));
-    height: calc(var(--head-h) + var(--plan-b));
+    height: calc(var(--head-h) + var(--plan-b) + 4px);
     pointer-events: none;
     z-index: 1;
-    /* Исправляем обрезку цвета */
+    /* Исправляем обрезку цвета - расширяем границы */
     border-radius: calc(var(--plan-b) + var(--base-r)) calc(var(--plan-b) + var(--base-r)) 0 0;
+    overflow: visible;
 }
 
 .package-item::before {
@@ -1322,11 +1321,13 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* Исправляем обрезку цвета */
+    /* Исправляем обрезку цвета - убираем overflow и margin */
     overflow: visible;
     margin: calc(-1 * var(--plan-b)) calc(-1 * var(--plan-b)) 0;
     padding-top: calc(var(--plan-b) + calc(var(--base-b) * 0.8));
     border-radius: calc(var(--plan-b) + var(--base-r)) calc(var(--plan-b) + var(--base-r)) 0 0;
+    /* Убираем обрезку градиента */
+    background: inherit;
 }
 
 .package-name {
@@ -1426,6 +1427,9 @@ body {
     padding: 0 var(--base-b) var(--base-b);
     display: flex;
     justify-content: center;
+    /* Убираем лишний фон */
+    background: transparent;
+    margin: 0;
 }
 
 
@@ -1457,13 +1461,9 @@ body {
     top: -0.15em;
     left: -0.15em;
     border-radius: inherit;
-    background: linear-gradient(-135deg,
-            rgba(5, 5, 5, 0.5),
-            transparent 20%,
-            transparent 100%);
-    filter: blur(0.0125em);
-    opacity: 0.25;
-    mix-blend-mode: multiply;
+    /* Убираем лишний фон - делаем прозрачным */
+    background: transparent;
+    opacity: 0;
 }
 
 .package-button .button-outer {
