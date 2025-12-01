@@ -1428,11 +1428,42 @@ if (bookingClose) {
 
 if (bookingModal) {
     const bookingOverlay = bookingModal.querySelector(".booking-overlay");
+    const bookingContent = bookingModal.querySelector(".booking-content");
+    
     if (bookingOverlay) {
         bookingOverlay.addEventListener("click", (e) => {
             if (e.target === bookingOverlay) {
                 bookingModal.classList.remove("active");
                 document.body.style.overflow = "";
+            }
+        });
+    }
+    
+    // Предотвращаем перетаскивание формы на мобильных
+    if (bookingContent) {
+        let isDragging = false;
+        let startY = 0;
+        let startX = 0;
+        
+        bookingContent.addEventListener("touchstart", (e) => {
+            // Разрешаем перетаскивание только для скролла
+            if (e.target.closest('.booking-content') && bookingContent.scrollTop === 0) {
+                // Если в начале скролла, разрешаем только вертикальный скролл
+                return;
+            }
+        }, { passive: true });
+        
+        bookingContent.addEventListener("touchmove", (e) => {
+            // Предотвращаем горизонтальное перетаскивание
+            if (Math.abs(e.touches[0].clientX - startX) > Math.abs(e.touches[0].clientY - startY)) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+        
+        // Предотвращаем перетаскивание всей формы
+        bookingContent.addEventListener("mousedown", (e) => {
+            if (e.target === bookingContent || e.target.closest('.booking-content') === bookingContent) {
+                e.preventDefault();
             }
         });
     }
