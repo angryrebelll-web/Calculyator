@@ -1256,7 +1256,9 @@ body {
     z-index: 1;
     /* Исправляем обрезку цвета - расширяем границы */
     border-radius: calc(var(--plan-b) + var(--base-r)) calc(var(--plan-b) + var(--base-r)) 0 0;
-    overflow: visible;
+    overflow: hidden;
+    /* Ограничиваем градиент только header */
+    clip-path: inset(0 0 calc(100% - var(--head-h) - var(--plan-b)) 0);
 }
 
 .package-item::before {
