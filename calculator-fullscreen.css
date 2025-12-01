@@ -1994,6 +1994,9 @@ body {
         width: 95%;
         padding: 24px;
         max-height: 90vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
     }
     
     .model-title {
@@ -2002,6 +2005,18 @@ body {
     
     .model-subtitle {
         font-size: 14px;
+    }
+    
+    .model-body {
+        max-height: calc(90vh - 120px);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+    }
+    
+    .model-body .chips {
+        max-height: none;
+        overflow-y: hidden;
     }
 }
 
