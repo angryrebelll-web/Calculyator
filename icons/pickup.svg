@@ -1,0 +1,16 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none"
+xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <filter id="glow-pickup" width="200%" height="200%" x="-50%" y="-50%">
+    <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+    <feMerge>
+      <feMergeNode in="coloredBlur"/>
+      <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+  </filter>
+</defs>
+<g stroke="#22d3ee" stroke-width="1.4" stroke-linecap="round"
+   stroke-linejoin="round" filter="url(#glow-pickup)">
+<path d="M8 34h48v-6l-12-8H32l-6 6H8z"/><path d="M18 46a5 5 0 1 0 10 0a5 5 0 1 0 -10 0"/><path d="M36 46a5 5 0 1 0 10 0a5 5 0 1 0 -10 0"/>
+</g>
+</svg>
