@@ -1236,6 +1236,8 @@ body {
     grid-template-rows: auto 1fr auto;
     /* Стабильность */
     will-change: auto;
+    /* Убираем свечение */
+    box-shadow: none;
 }
 
 .package-item::before,
@@ -1275,14 +1277,17 @@ body {
             var(--c1, #1ba5b3) 32%, 
             var(--c2, #168491) 0 57%, 
             var(--c3, #0d5c60) 0);
-    mix-blend-mode: screen;
-    opacity: 0.8;
+    mix-blend-mode: normal;
+    opacity: 1;
+    /* Убеждаемся что градиент виден */
+    z-index: 1;
 }
 
 .package-item:hover {
     transform: none;
-    box-shadow: 0 8px 24px rgba(22, 132, 145, 0.25);
-    border-color: rgba(22, 132, 145, 0.3);
+    /* Убираем свечение при наведении */
+    box-shadow: none;
+    border-color: transparent;
 }
 
 .package-item:not(:hover) {
@@ -1291,12 +1296,12 @@ body {
 
 .package-item.active {
     transform: none;
-    /* Эффект нажатия вместо подсветки */
+    /* Эффект нажатия без свечения */
     box-shadow: 
         inset 0 4px 12px rgba(22, 132, 145, 0.3),
-        inset 0 -2px 8px rgba(0, 0, 0, 0.2),
-        0 2px 8px rgba(22, 132, 145, 0.2);
-    border-color: var(--propellini-primary);
+        inset 0 -2px 8px rgba(0, 0, 0, 0.2);
+    /* Убираем внешнее свечение */
+    border-color: transparent;
 }
 
 .package-item.active::after {
@@ -1326,8 +1331,8 @@ body {
     margin: calc(-1 * var(--plan-b)) calc(-1 * var(--plan-b)) 0;
     padding-top: calc(var(--plan-b) + calc(var(--base-b) * 0.8));
     border-radius: calc(var(--plan-b) + var(--base-r)) calc(var(--plan-b) + var(--base-r)) 0 0;
-    /* Убираем обрезку градиента */
-    background: inherit;
+    /* Прозрачный фон чтобы градиент из ::after был виден */
+    background: transparent;
 }
 
 .package-name {
