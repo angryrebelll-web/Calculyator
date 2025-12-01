@@ -1105,6 +1105,8 @@ body {
         flex-shrink: 0 !important;
         /* Стабильность текста */
         contain: layout style paint !important;
+        /* Прозрачный фон чтобы цветная шапка из ::after была видна */
+        background: transparent !important;
     }
     
     .package-name {
@@ -1258,18 +1260,14 @@ body {
 }
 
 .package-item::before {
-    background: 
-        conic-gradient(from 90deg at 50% 50%, 
-            rgba(0, 0, 0, 0.3) 0deg, 
-            transparent 67deg, 
-            rgba(0, 0, 0, 0.3) 180deg, 
-            transparent 247deg, 
-            rgba(0, 0, 0, 0.3) 360deg);
-    filter: blur(6px) contrast(18);
-    opacity: 0.6;
+    /* Убираем градиент - оставляем только для эффекта нажатия */
+    background: transparent;
+    filter: none;
+    opacity: 0;
 }
 
 .package-item::after {
+    /* Цветная шапка пакета - градиент только в header */
     background: 
         conic-gradient(from 180deg at 100% calc(var(--head-h) - 20px), 
             var(--c4, #1ba5b3) 45deg, 
@@ -1279,10 +1277,10 @@ body {
             var(--c1, #1ba5b3) 32%, 
             var(--c2, #168491) 0 57%, 
             var(--c3, #0d5c60) 0);
-    /* Возвращаем mix-blend-mode для красивого градиента */
-    mix-blend-mode: screen;
-    opacity: 0.9;
-    /* Убеждаемся что градиент виден */
+    /* Используем normal для четкого отображения цвета */
+    mix-blend-mode: normal;
+    opacity: 1;
+    /* Убеждаемся что цветная шапка видна */
     z-index: 1;
 }
 
@@ -1315,8 +1313,9 @@ body {
 
 /* Дополнительный эффект нажатия для активного пакета */
 .package-item.active::before {
-    opacity: 0.8;
-    filter: blur(4px) contrast(15);
+    /* Убираем градиент при активном состоянии */
+    opacity: 0;
+    filter: none;
 }
 
 .package-header {
