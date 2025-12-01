@@ -1,0 +1,49 @@
+═══════════════════════════════════════════════════════════════
+  БЫСТРАЯ ЗАГРУЗКА НА GITHUB
+═══════════════════════════════════════════════════════════════
+
+РЕПОЗИТОРИЙ: https://github.com/angryrebelll-web/Calculyator
+
+═══════════════════════════════════════════════════════════════
+  ИЗМЕНЕННЫЕ ФАЙЛЫ (3 основных):
+═══════════════════════════════════════════════════════════════
+
+1. js/cars.js
+   Путь: propellini-calculator-fullscreen/js/cars.js
+   Локальный: C:\Users\dmitry\Desktop\propellini-calculator-fullscreen\js\cars.js
+   Commit: "Fix: исправлены типы для Dodge Charger и Porsche Taycan Turbo S"
+
+2. js/calculator-fullscreen.js
+   Путь: propellini-calculator-fullscreen/js/calculator-fullscreen.js
+   Локальный: C:\Users\dmitry\Desktop\propellini-calculator-fullscreen\js\calculator-fullscreen.js
+   Commit: "Fix: улучшена фильтрация моделей по типу авто"
+
+3. calculator-fullscreen.css
+   Путь: propellini-calculator-fullscreen/calculator-fullscreen.css
+   Локальный: C:\Users\dmitry\Desktop\propellini-calculator-fullscreen\calculator-fullscreen.css
+   Commit: "Update: обновлены SVG иконки, улучшен UX"
+
+4. icons/*.svg (7 файлов)
+   Путь: propellini-calculator-fullscreen/icons/
+   Локальный: C:\Users\dmitry\Desktop\propellini-calculator-fullscreen\icons\
+   Файлы: sedan.svg, suv.svg, coupe.svg, hatch.svg, pickup.svg, minivan.svg, microbus.svg
+   Commit: "Update: обновлены SVG иконки (убраны фильтры, цвет Propellini)"
+
+═══════════════════════════════════════════════════════════════
+  БЫСТРЫЙ СПОСОБ (ВЕБ-ИНТЕРФЕЙС):
+═══════════════════════════════════════════════════════════════
+
+1. Откройте: https://github.com/angryrebelll-web/Calculyator/tree/main/propellini-calculator-fullscreen
+
+2. Для каждого файла:
+   - Откройте файл
+   - Нажмите карандаш (редактировать)
+   - Откройте локальный файл
+   - Ctrl+A, Ctrl+C (скопировать всё)
+   - Ctrl+V (вставить в GitHub)
+   - Прокрутите вниз
+   - Напишите commit message
+   - Нажмите "Commit changes"
+
+═══════════════════════════════════════════════════════════════
+
