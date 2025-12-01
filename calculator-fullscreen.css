@@ -355,6 +355,95 @@ body {
         max-height: none;
         overflow-y: visible;
     }
+}
+
+@media (max-width: 768px) {
+    /* Компактное расположение типов авто на мобильных */
+    #carTypeSelect.chips {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        gap: 12px;
+        margin-top: 12px;
+        padding-bottom: 10px;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+    }
+    
+    #carTypeSelect .chip {
+        min-width: 140px;
+        max-width: 160px;
+        flex-shrink: 0;
+        scroll-snap-align: start;
+        padding: 16px 12px;
+        min-height: 140px;
+    }
+    
+    #carTypeSelect .chip-icon {
+        width: 36px;
+        height: 36px;
+        margin-bottom: 6px;
+    }
+    
+    #carTypeSelect .chip-icon img {
+        width: 36px;
+        height: 36px;
+    }
+    
+    #carTypeSelect .chip-text strong {
+        font-size: 14px;
+    }
+    
+    #carTypeSelect .chip-text span {
+        font-size: 11px;
+    }
+    
+    /* Улучшаем скролл для марок и моделей */
+    #brandList.chips,
+    #modelList.chips {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        gap: 10px;
+        margin-top: 12px;
+        padding-bottom: 10px;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+        scroll-snap-type: x proximity;
+    }
+    
+    #brandList .chip,
+    #modelList .chip {
+        min-width: 120px;
+        flex-shrink: 0;
+        scroll-snap-align: start;
+    }
+    
+    /* Улучшаем скролл в модальном окне моделей */
+    .model-body .chips {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        gap: 10px;
+        padding-bottom: 10px;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+        scroll-snap-type: x proximity;
+        max-height: none;
+    }
+    
+    .model-body .chip {
+        min-width: 120px;
+        flex-shrink: 0;
+        scroll-snap-align: start;
+    }
     
     /* Для марок и моделей - более компактная сетка */
     #brandList.chips,
@@ -381,6 +470,9 @@ body {
         -webkit-overflow-scrolling: touch;
         scrollbar-width: thin;
         scrollbar-color: var(--propellini-primary) transparent;
+        scroll-behavior: smooth;
+        /* Улучшаем плавность скролла */
+        scroll-snap-type: x proximity;
     }
     
     .scrollable-horizontal::-webkit-scrollbar {
@@ -388,7 +480,8 @@ body {
     }
     
     .scrollable-horizontal::-webkit-scrollbar-track {
-        background: transparent;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 3px;
     }
     
     .scrollable-horizontal::-webkit-scrollbar-thumb {
@@ -396,13 +489,14 @@ body {
         border-radius: 3px;
     }
     
-    /* Для пакетов на мобильных - вертикальный скролл */
-    .package-list.scrollable-horizontal,
-    #packagesList.scrollable-horizontal {
-        flex-wrap: wrap;
-        overflow-x: visible;
-        overflow-y: visible;
-        padding-bottom: 0;
+    /* Улучшаем скролл для марок и моделей */
+    #brandList.scrollable-horizontal,
+    #modelList.scrollable-horizontal,
+    #modelListModal.scrollable-horizontal {
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        /* Ускоряем скролл */
+        overscroll-behavior-x: contain;
     }
 }
 
@@ -885,20 +979,42 @@ body {
 
 @media (max-width: 768px) {
     .package-list {
-        grid-template-columns: 1fr;
-        gap: 24px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        gap: 16px;
         margin-top: 16px;
         padding-bottom: 20px;
-        /* Убираем горизонтальный скролл, делаем вертикальный */
-        overflow-x: visible;
-        overflow-y: visible;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: thin;
+        scrollbar-color: var(--propellini-primary) transparent;
+    }
+    
+    .package-list::-webkit-scrollbar {
+        height: 6px;
+    }
+    
+    .package-list::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 3px;
+    }
+    
+    .package-list::-webkit-scrollbar-thumb {
+        background: var(--propellini-primary);
+        border-radius: 3px;
     }
     
     .package-item {
-        --plan-b: 1.2em;
-        --head-h: 120px;
+        --plan-b: 1em;
+        --head-h: 100px;
         min-height: auto;
-        /* Убираем transform на мобильных для лучшей видимости */
+        min-width: 280px;
+        max-width: 320px;
+        flex-shrink: 0;
+        scroll-snap-align: start;
         transform: none !important;
         margin-bottom: 0;
     }
@@ -914,28 +1030,23 @@ body {
     }
     
     .package-name {
-        font-size: 1.2em;
+        font-size: 1.1em;
     }
     
     .package-cost {
-        font-size: 1.2em;
+        font-size: 1.1em;
     }
     
     .package-features {
-        margin-top: calc(var(--head-h) - var(--base-b) - 15px);
-        padding: calc(var(--base-b) * 0.9);
-        max-height: none;
+        margin-top: calc(var(--head-h) - var(--base-b) - 10px);
+        padding: calc(var(--base-b) * 0.8);
+        max-height: 200px;
+        overflow-y: auto;
     }
     
     .package-features li {
-        font-size: 0.9em;
-        padding: 6px 0;
-    }
-    
-    /* Улучшаем видимость пакета на мобильных */
-    .package-item {
-        width: 100%;
-        max-width: 100%;
+        font-size: 0.85em;
+        padding: 4px 0;
     }
 }
 
@@ -2111,6 +2222,13 @@ body {
         padding: 10px 14px;
         min-width: 100px;
         gap: 8px;
+    }
+    
+    /* Улучшаем скролл для всех списков на мобильных */
+    .chips {
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-x: contain;
     }
     
     /* Улучшаем видимость активного чипа на мобильных */
