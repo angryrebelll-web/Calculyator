@@ -1146,6 +1146,8 @@ body {
         /* Стабильность текста */
         contain: layout style paint !important;
         -webkit-overflow-scrolling: touch !important;
+        /* Фиксируем размеры чтобы текст не расплывался */
+        position: relative !important;
     }
     
     .package-features ul {
@@ -1157,19 +1159,42 @@ body {
         gap: 5px !important;
         /* Стабильность */
         width: 100% !important;
+        /* Фиксируем размеры */
+        position: relative !important;
     }
     
     .package-features li {
-        font-size: 0.72em !important;
-        padding: 3px 0 !important;
-        line-height: 1.5 !important;
+        font-size: 11px !important;
+        padding: 4px 0 !important;
+        line-height: 1.4 !important;
         word-wrap: break-word !important;
         overflow-wrap: break-word !important;
-        /* Стабильность текста */
+        /* Стабильность текста - фиксируем все размеры */
         white-space: normal !important;
-        min-height: 1.5em !important;
+        min-height: 1.4em !important;
+        height: auto !important;
+        max-height: none !important;
         text-align: left !important;
         width: 100% !important;
+        /* Предотвращаем расплывание */
+        display: block !important;
+        position: relative !important;
+        contain: layout style !important;
+        /* Фиксируем цвет и стиль */
+        color: var(--propellini-text) !important;
+        font-weight: 400 !important;
+        letter-spacing: 0 !important;
+        text-rendering: optimizeLegibility !important;
+        -webkit-font-smoothing: antialiased !important;
+        -moz-osx-font-smoothing: grayscale !important;
+    }
+    
+    /* Фиксируем стили при активном пакете */
+    .package-item.active .package-features li {
+        font-size: 11px !important;
+        line-height: 1.4 !important;
+        padding: 4px 0 !important;
+        color: var(--propellini-text) !important;
     }
     
     .package-footer {
@@ -1197,14 +1222,15 @@ body {
     --grad-a: 135deg;
     
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     margin: calc(-1 * var(--plan-b));
     border: solid var(--plan-b) transparent;
     border-radius: calc(var(--plan-b) + var(--base-r));
     background: 
         radial-gradient(closest-side, hsla(0, 0%, 0%, 0.15), transparent) 50% 100% / var(--base-w) var(--plan-b) border-box no-repeat,
         linear-gradient(var(--propellini-dark-secondary) 0 0) padding-box;
-    clip-path: inset(var(--plan-b) var(--plan-b) 0);
+    /* Убираем clip-path чтобы цвет не обрезался */
+    clip-path: none;
     transition: box-shadow 0.2s ease;
     cursor: pointer;
     min-height: 240px;
@@ -1218,12 +1244,14 @@ body {
 .package-item::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: var(--head-h);
+    top: calc(-1 * var(--plan-b));
+    left: calc(-1 * var(--plan-b));
+    width: calc(100% + 2 * var(--plan-b));
+    height: calc(var(--head-h) + var(--plan-b));
     pointer-events: none;
     z-index: 1;
+    /* Исправляем обрезку цвета */
+    border-radius: calc(var(--plan-b) + var(--base-r)) calc(var(--plan-b) + var(--base-r)) 0 0;
 }
 
 .package-item::before {
@@ -1264,12 +1292,22 @@ body {
 
 .package-item.active {
     transform: none;
-    box-shadow: 0 12px 32px rgba(22, 132, 145, 0.4);
+    /* Эффект нажатия вместо подсветки */
+    box-shadow: 
+        inset 0 4px 12px rgba(22, 132, 145, 0.3),
+        inset 0 -2px 8px rgba(0, 0, 0, 0.2),
+        0 2px 8px rgba(22, 132, 145, 0.2);
     border-color: var(--propellini-primary);
 }
 
 .package-item.active::after {
     opacity: 1;
+}
+
+/* Дополнительный эффект нажатия для активного пакета */
+.package-item.active::before {
+    opacity: 0.8;
+    filter: blur(4px) contrast(15);
 }
 
 .package-header {
@@ -1284,6 +1322,11 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    /* Исправляем обрезку цвета */
+    overflow: visible;
+    margin: calc(-1 * var(--plan-b)) calc(-1 * var(--plan-b)) 0;
+    padding-top: calc(var(--plan-b) + calc(var(--base-b) * 0.8));
+    border-radius: calc(var(--plan-b) + var(--base-r)) calc(var(--plan-b) + var(--base-r)) 0 0;
 }
 
 .package-name {
